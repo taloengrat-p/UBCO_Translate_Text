@@ -45,8 +45,21 @@ git clone https://github.com/taloengrat-p/UBCO_Translate_text.git
 7. Optionally, clear all text by click close button icon in action bar, application will be clear text.
    
 
-## How your solution works
+## How solution works
+
+when user interact by taping on textfield and keyboard showing up then typing and system will be translate together and show result transled in bottom output field and if you need to clear input translate immediately by action button close on top right in application
 
 ## Reasons for the technical decisions
 
+
+
 ## If i have more time, What other things i would implement
+
+1. Structure the project to accommodate features that will be added in the future.
+
+2. Apply concept dependency injection into my project.
+
+3. Implement feature history translation.
+
+4. Implement feature translate back from UBCO to English languge.
+
