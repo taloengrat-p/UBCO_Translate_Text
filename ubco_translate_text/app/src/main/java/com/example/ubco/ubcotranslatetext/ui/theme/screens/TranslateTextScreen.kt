@@ -46,8 +46,6 @@ fun TranslateTextScreen(
     viewModel: TranslateTextViewModel,
     modifier: Modifier = Modifier,
 ) {
-
-
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -105,7 +103,7 @@ fun TranslateTextScreen(
                         text = stringResource(id = R.string.txf_placeholder),
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp,
-                        color = Color.Black
+                        color = Color.Gray
                     )
                 },
                 label = {

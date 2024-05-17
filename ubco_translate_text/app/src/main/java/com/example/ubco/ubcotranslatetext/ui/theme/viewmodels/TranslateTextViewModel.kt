@@ -8,6 +8,12 @@ class TranslateTextViewModel : ViewModel() {
      * You can edit, run, and share this code.
      * play.kotlinlang.org
      */
+    val MAX_CHAR_UPPER = 122
+    val MAX_CHAR_LOWER = 91
+
+    val MIN_CHAR_UPPER = 65
+    val MIN_CHAR_LOWER = 97
+
     private val _originalWord = mutableStateOf("")
     private val _translateResult = mutableStateOf("")
 
@@ -27,16 +33,19 @@ class TranslateTextViewModel : ViewModel() {
     fun doTranslate(value: String) {
         println("doTranslate $value")
         _originalWord.value = value
+        if (value.isEmpty()) {
+            _translateResult.value = ""
+            return
+        }
         var result = ""
-        result = doTranslateCondDoubleVowel(value, originalValue = originalWord)
+        result = doTranslateCondDoubleVowel(value)
 
         result = doTranslateCondShiftCharExcludeVowel(result, 1)
 
-        result = doTranslateCondPrefixWithUBCO(result)
-
         result =
-            doTranslateCondEndWithCountOfWords(result, originalValue = originalWord)
+            doTranslateCondEndWithCountOfWords(result)
 
+        result = doTranslateCondPrefixWithUBCO(result)
 
         _translateResult.value = result
     }
@@ -45,7 +54,7 @@ class TranslateTextViewModel : ViewModel() {
         return "UBCO $value"
     }
 
-    private fun doTranslateCondDoubleVowel(value: String, originalValue: String): String {
+    private fun doTranslateCondDoubleVowel(value: String): String {
         val result = value.map { char ->
             if (char.isWhitespace()) char.toString() else if (isVowel(char)) char.toString() + char.toString() else char.toString()
         }.joinToString(separator = "")
@@ -66,7 +75,17 @@ class TranslateTextViewModel : ViewModel() {
     }
 
     private fun shiftCharacter(char: Char, shiftAmount: Int): Char {
-        val result = (char.code + shiftAmount).toChar()
+
+
+        val baseCharMax = if (char.isLowerCase()) MAX_CHAR_UPPER else MAX_CHAR_LOWER
+
+        val shipedChar = char.code + shiftAmount
+
+        var result = shipedChar.toChar()
+        if (shipedChar > baseCharMax) {
+            result = (if (char.isLowerCase()) MIN_CHAR_LOWER else MIN_CHAR_UPPER).toChar()
+        }
+
         return if (isVowel(result)) shiftCharacter(result, shiftAmount) else result;
     }
 
@@ -77,9 +96,9 @@ class TranslateTextViewModel : ViewModel() {
         }
     }
 
-    private fun doTranslateCondEndWithCountOfWords(value: String, originalValue: String): String {
-        val resultCountOfWordSplit = originalValue.split(" ").filter { item ->
-            !item.equals(originalValue)
+    private fun doTranslateCondEndWithCountOfWords(value: String): String {
+        val resultCountOfWordSplit = originalWord.split(" ").filter { item ->
+            !item.equals(originalWord) && item.isNotEmpty()
         }.count()
 
         val resultCountOfWord =

@@ -16,7 +16,6 @@ class MainActivity : ComponentActivity() {
 
     private val translateTextViewModel: TranslateTextViewModel by viewModels()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
