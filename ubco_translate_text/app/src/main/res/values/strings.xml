@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">UBCO Translate text</string>
+    <string name="app_name">UBCO Translate Text</string>
+    <string name="english">English</string>
+    <string name="english_language">English language</string>
+    <string name="ubco">UBCO</string>
+    <string name="ubco_language">UBCO language</string>
+    <string name="txf_placeholder">Enter text</string>
 </resources>
