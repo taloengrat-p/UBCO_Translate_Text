@@ -62,8 +62,10 @@ Translation have 4 function as following
 
    
 ## Reasons for the technical decisions
+   
+   We use the shift character method by increasing ASCII instead of keeping all characters in the entire array and then shifting. This approach results in cleaner code and is easier for management.
 
-For easy investigation try to separate functions so that each function does its own responsibility and variables that do not change must be declared val global for easy to change and adjust for clean code base on declartive function when handlering any list of object each condition.
+Moreover, we employ Android Compose and MVVM architecture because this solution can scale effectively in the future and android compose integrates tools capable of creating comprehensive application solutions.  
 
 
 ## If i have more time, What other things i would implement
