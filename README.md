@@ -64,7 +64,7 @@ Translation have 4 function as following
    
 ## Reasons for the technical decisions
    
-   We use the shift character method by increasing ASCII instead of keeping all characters in the entire array and then shifting. This approach results in cleaner code and is easier for management.
+   We use the shift character method by increasing ASCII instead of keeping all characters in the entire array and then shifting. This approach results in cleaner code.
 
 Moreover, we employ Android Compose and MVVM architecture because this solution can scale effectively in the future and android compose integrates tools capable of creating comprehensive application solutions.  
 
