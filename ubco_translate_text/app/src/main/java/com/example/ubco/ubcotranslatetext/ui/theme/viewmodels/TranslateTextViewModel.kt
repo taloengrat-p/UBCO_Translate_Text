@@ -10,10 +10,10 @@ class TranslateTextViewModel : ViewModel() {
      */
     val VOWELS = listOf('a', 'e', 'i', 'o', 'u')
     val PREFIX_WORD = "UBCO"
-    val MAX_CHAR_UPPER = 90
-    val MAX_CHAR_LOWER = 122
-    val MIN_CHAR_UPPER = 65
-    val MIN_CHAR_LOWER = 97
+    val MAX_CHAR_UPPER = 'Z'
+    val MAX_CHAR_LOWER = 'z'
+    val MIN_CHAR_UPPER = 'A'
+    val MIN_CHAR_LOWER = 'a'
 
     private val _originalWord = mutableStateOf("")
     private val _translateResult = mutableStateOf("")
@@ -84,7 +84,7 @@ class TranslateTextViewModel : ViewModel() {
         val shipedChar = char.code + shiftAmount
 
         var result = shipedChar.toChar()
-        if (shipedChar > baseCharMax) {
+        if (shipedChar > baseCharMax.code) {
             result = (if (char.isLowerCase()) MIN_CHAR_LOWER else MIN_CHAR_UPPER).toChar()
         }
 
