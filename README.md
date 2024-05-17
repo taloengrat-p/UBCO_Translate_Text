@@ -47,10 +47,23 @@ git clone https://github.com/taloengrat-p/UBCO_Translate_text.git
 
 ## How solution works
 
-when user interact by taping on textfield and keyboard showing up then typing and system will be translate together and show result transled in bottom output field and if you need to clear input translate immediately by action button close on top right in application
+Translation have 4 function as following
 
+    1. doTranslateCondDoubleVowel(value: String) : String, The function doTranslateCondDoubleVowel takes a String as an input and returns a String. The function processes each character in the input string         and constructs a new string based on the following rules:
+         * Vowel Doubling: If the character is a vowel, it is doubled.
+         * Other Characters: Any other character remains unchanged.
+    2. doTranslateCondShiftCharExcludeVowel(value: String, shiftAmount: Int) : String, The function doTranslateCondShiftCharExcludeVowel takes a String and an Int as inputs and returns a String. The function processes each          character in the input string and constructs a new string based on the following rules:
+
+         * Whitespace, Digits and Non-Alphanumeric Characters: If the character is a whitespace or a non-alphanumeric character, it remains unchanged.
+         * Vowels: If the character is a vowel, it should repeat recursive function again for expect result is not vowel.
+         * Other Characters: Any other character (i.e., consonants) is shifted by a specified amount.
+    3. doTranslateCondEndWithCountOfWords(value: String) : String, The function doTranslateCondEndWithCountOfWords takes a String as an input and returns a String. The function appends the count of words in the input string to the end of the original string. by spliting original text for counting word with separate whitespace
+    4. doTranslateCondPrefixWithUBCO(value: String) : String, The function doTranslateCondPrefixWithUBCO takes a String as an input and returns a String. The function prefixes the input string with "UBCO ".
+
+   
 ## Reasons for the technical decisions
 
+For easy investigation try to separate functions so that each function does its own responsibility and variables that do not change must be declared val global for easy to change and adjust for clean code base on declartive function when handlering any list of object each condition.
 
 
 ## If i have more time, What other things i would implement
